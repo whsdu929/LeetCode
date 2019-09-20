@@ -1,11 +1,7 @@
 package com.xudadong.leetcode.utils;
 
-import android.content.Context;
-
 import com.xudadong.leetcode.arithmetic.BigNumberPlus;
 import com.xudadong.leetcode.arithmetic.BinarySearch;
-import com.xudadong.leetcode.arithmetic.DepthOfViewGroup;
-import com.xudadong.leetcode.arithmetic.MultiThreadPrinter;
 import com.xudadong.leetcode.arithmetic.QuickSort;
 import com.xudadong.leetcode.arithmetic.ReverseLinkedList;
 import com.xudadong.leetcode.contract.Model;
@@ -30,14 +26,14 @@ public class ParseUtil {
         //todo 使用注解获取Model所有子类
         testSets = new HashSet<>();
         testSets.add(ReverseLinkedList.class);
-        testSets.add(DepthOfViewGroup.class);
+        //testSets.add(DepthOfViewGroup.class);
         testSets.add(QuickSort.class);
         testSets.add(BinarySearch.class);
-        testSets.add(MultiThreadPrinter.class);
+        //testSets.add(MultiThreadPrinter.class);
         testSets.add(BigNumberPlus.class);
     }
 
-    public static List<Model> parseData(Context context) {
+    public static List<Model> parseData() {
         if (leetModels != null && leetModels.size() > 0) {
             return leetModels;
         }
@@ -48,9 +44,6 @@ public class ParseUtil {
             Class<? extends Model> clz = iterator.next();
             try {
                 Model model = (Model) Class.forName(clz.getName()).newInstance();
-                Model.Args args = new Model.Args();
-                args.mApplicationContext = context.getApplicationContext();
-                model.setArgs(args);
                 leetModels.add(model);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

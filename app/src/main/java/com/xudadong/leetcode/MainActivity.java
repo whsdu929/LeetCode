@@ -1,5 +1,6 @@
 package com.xudadong.leetcode;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         Toolbar vToolbar = findViewById(R.id.toolbar);
+        vToolbar.setTitleTextColor(Color.WHITE);
         vToolbar.setTitle(getResources().getString(R.string.app_name));
 
         final RecyclerView vRecyclerView = findViewById(R.id.recyclerView);
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         disposable = Observable.defer(new Callable<ObservableSource<List<Model>>>() {
             @Override
             public ObservableSource<List<Model>> call() {
-                return Observable.fromArray(ParseUtil.parseData(MainActivity.this));
+                return Observable.fromArray(ParseUtil.parseData());
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -32,7 +32,7 @@ public class QuickSort extends Model<int[], int[]> {
 
     @Override
     public String getResult(int[] result) {
-        StringBuffer sb = new StringBuffer("输出: ");
+        StringBuffer sb = new StringBuffer();
         if (result != null) {
             for (int i : result) {
                 sb.append(i).append(" ");
@@ -58,27 +58,26 @@ public class QuickSort extends Model<int[], int[]> {
     }
 
     private static void quickSort(int[] arr, int low, int high) {
-        if (arr == null || arr.length == 0 || arr.length <= high || low > high) {
-            return;
+        if (low < high) {
+            int mid = part(arr, low, high);
+            quickSort(arr, low, mid - 1);
+            quickSort(arr, mid + 1, high);
         }
+    }
 
+    private static int part(int[] arr, int low, int high) {
         int i = low, j = high, base = arr[low];
         while (i < j) {
-            while (arr[j] > base && j > i) {
+            while (arr[j] >= base && j > i) {
                 j--;
             }
-            while (arr[i] < base && i < j) {
+            arr[i] = arr[j];
+            while (arr[i] <= base && i < j) {
                 i++;
             }
-            if (i < j) {
-                int tmp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = tmp;
-            }
+            arr[j] = arr[i];
         }
-        arr[low] = arr[i];
         arr[i] = base;
-        quickSort(arr, low, i);
-        quickSort(arr, i + 1, high);
+        return i;
     }
 }

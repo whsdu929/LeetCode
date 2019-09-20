@@ -8,7 +8,19 @@
     tools:context=".DetailActivity">
 
     <TextView
-        android:id="@+id/detail"
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/detail_divider"
+        android:layerType="software"/>
+
+    <TextView
+        android:id="@+id/tv_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

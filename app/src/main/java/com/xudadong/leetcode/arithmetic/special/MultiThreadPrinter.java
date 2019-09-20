@@ -1,8 +1,6 @@
-package com.xudadong.leetcode.arithmetic;
+package com.xudadong.leetcode.arithmetic.special;
 
 import android.arch.lifecycle.MutableLiveData;
-
-import com.xudadong.leetcode.contract.Model;
 
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
@@ -11,7 +9,7 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
  * <p>
  * Created by didi on 2019-08-03.
  */
-public final class MultiThreadPrinter extends Model<Void, MutableLiveData<int[]>> {
+public final class MultiThreadPrinter {
 
     private static final int THREAD_COUNT = 3;
     private static final int MIN_NUM = 1;
@@ -25,22 +23,18 @@ public final class MultiThreadPrinter extends Model<Void, MutableLiveData<int[]>
     private volatile int mCurrIndex;
     private volatile boolean mIsPrintFinished;
 
-    @Override
     public String getTitle() {
         return "多线程顺序打印";
     }
 
-    @Override
     public String getDesc() {
         return "3个线程顺序打印数字1-100";
     }
 
-    @Override
     public Void getInput() {
         return null;
     }
 
-    @Override
     public MutableLiveData<int[]> fun(Void input) {
         mAtomicResultArray = new AtomicIntegerArray(MAX_NUM - MIN_NUM + 1);
         mMutableResultArray = new MutableLiveData<>();
@@ -53,7 +47,6 @@ public final class MultiThreadPrinter extends Model<Void, MutableLiveData<int[]>
         return mMutableResultArray;
     }
 
-    @Override
     public String getResult(MutableLiveData<int[]> result) {
         StringBuffer sb = new StringBuffer();
         int[] array = result.getValue();

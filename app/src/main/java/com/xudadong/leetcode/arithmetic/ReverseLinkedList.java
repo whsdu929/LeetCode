@@ -85,7 +85,7 @@ public class ReverseLinkedList extends Model<ReverseLinkedList.Node, ReverseLink
         return Complexity.o1;
     }
 
-    static class Node<T> implements Serializable {
+    static class Node<T extends Serializable> implements Serializable {
         Node(T value, Node next) {
             this.value = value;
             this.next = next;

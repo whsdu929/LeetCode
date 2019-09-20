@@ -1,13 +1,12 @@
-package com.xudadong.leetcode.arithmetic;
+package com.xudadong.leetcode.arithmetic.special;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.xudadong.leetcode.contract.Model;
 
 import java.util.LinkedList;
 
@@ -16,31 +15,27 @@ import java.util.LinkedList;
  * <p>
  * Created by didi on 2019-07-13.
  */
-public class DepthOfViewGroup extends Model<ViewGroup, Integer> {
+public class DepthOfViewGroup {
 
-    @Override
     public String getTitle() {
         return "ViewGroup的深度";
     }
 
-    @Override
     public String getDesc() {
         return "一个ViewGroup A，嵌套 View B1 和 ViewGroup B2，B2 又嵌套 ViewGroup C，求 A 的深度";
     }
 
-    @Override
-    public ViewGroup getInput() {
-        FrameLayout A = new FrameLayout(mArgs.mApplicationContext);
-        TextView B1 = new TextView(mArgs.mApplicationContext);
-        LinearLayout B2 = new LinearLayout(mArgs.mApplicationContext);
-        RelativeLayout C = new RelativeLayout(mArgs.mApplicationContext);
+    public ViewGroup getInput(Context context) {
+        FrameLayout A = new FrameLayout(context);
+        TextView B1 = new TextView(context);
+        LinearLayout B2 = new LinearLayout(context);
+        RelativeLayout C = new RelativeLayout(context);
         B2.addView(C);
         A.addView(B1);
         A.addView(B2);
         return A;
     }
 
-    @Override
     public Integer fun(ViewGroup input) {
         int depth = 0;
         LinkedList<View> queue = new LinkedList<>();
@@ -63,7 +58,6 @@ public class DepthOfViewGroup extends Model<ViewGroup, Integer> {
         return depth;
     }
 
-    @Override
     public String getResult(Integer result) {
         return "深度: " + result;
     }

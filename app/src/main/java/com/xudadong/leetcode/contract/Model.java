@@ -1,7 +1,5 @@
 package com.xudadong.leetcode.contract;
 
-import android.content.Context;
-
 import java.io.Serializable;
 
 /**
@@ -9,16 +7,7 @@ import java.io.Serializable;
  * <p>
  * Created by didi on 2019-07-10.
  */
-public abstract class Model<T, V> implements Serializable {
-
-    protected Args mArgs;
-
-    /**
-     * 设置参数
-     */
-    public void setArgs(Args args) {
-        mArgs = args;
-    }
+public abstract class Model<T extends Serializable, V extends Serializable> implements Serializable {
 
     /**
      * 标题
@@ -96,9 +85,5 @@ public abstract class Model<T, V> implements Serializable {
             }
             return "Unknown";
         }
-    }
-
-    public static class Args implements Serializable{
-        public Context mApplicationContext;
     }
 }
