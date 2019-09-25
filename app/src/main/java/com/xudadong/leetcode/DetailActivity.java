@@ -2,8 +2,12 @@ package com.xudadong.leetcode;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,11 +44,30 @@ public class DetailActivity extends AppCompatActivity {
                 vBtn.setEnabled(false);
             }
         });
+
+        inflateKeywords(model.getKeywords());
     }
 
-    private String getResult(Model model, String string) {
-        StringBuffer sb = new StringBuffer("\n");
-        sb.append("\n").append("输出结果: ").append(string).append("\n");
+    private void inflateKeywords(String[] keywords) {
+        if (keywords != null && keywords.length > 0) {
+            String prefix = "算法关键词: ";
+            String div = ", ";
+            TextView vKeywords = findViewById(R.id.tv_key);
+            StringBuffer sb = new StringBuffer(prefix);
+            for (String keyword : keywords) {
+                sb.append(keyword).append(div);
+            }
+            String str = sb.substring(0, sb.length() - div.length());
+            vKeywords.setText(createSpannableString(str, prefix.length(), str.length()));
+        }
+    }
+
+    private SpannableString getResult(Model model, String string) {
+        StringBuffer sb = new StringBuffer("\n").append("输出结果: ");
+        int start = sb.length();
+        sb.append(string);
+        int end = sb.length();
+        sb.append("\n");
         if (model.getTimeComplexity() != null) {
             sb.append("\n").append("时间复杂度: ").append(model.getTimeComplexity().toString()).append("\n");
             if (model.getTimeComplexity().bestComplexity != null) {
@@ -63,6 +86,13 @@ public class DetailActivity extends AppCompatActivity {
                 sb.append("最差空间复杂度: ").append(model.getSpaceComplexity().worstComplexity.toString()).append("\n");
             }
         }
-        return sb.toString();
+        return createSpannableString(sb.toString(), start, end);
+    }
+
+    private SpannableString createSpannableString(String txt, int start, int end) {
+        SpannableString spannableString = new SpannableString(txt);
+        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#228B22"));
+        spannableString.setSpan(foregroundColorSpan, start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        return spannableString;
     }
 }

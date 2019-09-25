@@ -51,6 +51,14 @@ public abstract class Model<T extends Serializable, V extends Serializable> impl
     public abstract String getResult(V result);
 
     /**
+     * 算法关键词
+     * @return
+     */
+    public String[] getKeywords() {
+        return null;
+    }
+
+    /**
      * 获取时间复杂度
      */
     public Complexity getTimeComplexity(){

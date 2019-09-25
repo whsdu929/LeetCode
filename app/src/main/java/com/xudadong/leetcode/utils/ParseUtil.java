@@ -4,6 +4,7 @@ import com.xudadong.leetcode.arithmetic.BigNumberPlus;
 import com.xudadong.leetcode.arithmetic.BinarySearch;
 import com.xudadong.leetcode.arithmetic.QuickSort;
 import com.xudadong.leetcode.arithmetic.ReverseLinkedList;
+import com.xudadong.leetcode.arithmetic.TwoSumLinkedList;
 import com.xudadong.leetcode.contract.Model;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class ParseUtil {
         testSets.add(BinarySearch.class);
         //testSets.add(MultiThreadPrinter.class);
         testSets.add(BigNumberPlus.class);
+        testSets.add(TwoSumLinkedList.class);
     }
 
     public static List<Model> parseData() {
