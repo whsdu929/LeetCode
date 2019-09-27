@@ -3,6 +3,7 @@ package com.xudadong.leetcode.utils;
 import com.xudadong.leetcode.arithmetic.BigNumberPlus;
 import com.xudadong.leetcode.arithmetic.BinarySearch;
 import com.xudadong.leetcode.arithmetic.LongestSubstring;
+import com.xudadong.leetcode.arithmetic.MedianInSortedArrays;
 import com.xudadong.leetcode.arithmetic.QuickSort;
 import com.xudadong.leetcode.arithmetic.ReverseLinkedList;
 import com.xudadong.leetcode.arithmetic.TwoSumLinkedList;
@@ -35,6 +36,7 @@ public class ParseUtil {
         testSets.add(BigNumberPlus.class);
         testSets.add(TwoSumLinkedList.class);
         testSets.add(LongestSubstring.class);
+        testSets.add(MedianInSortedArrays.class);
     }
 
     public static List<Model> parseData() {
