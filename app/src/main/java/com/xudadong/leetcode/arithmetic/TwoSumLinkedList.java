@@ -141,11 +141,6 @@ public class TwoSumLinkedList extends Model<TwoSumLinkedList.ListNode[], TwoSumL
         return sb.toString();
     }
 
-    @Override
-    public String[] getKeywords() {
-        return new String[] {"test1", "test2"};
-    }
-
     static class ListNode implements Serializable {
         int val;
         ListNode next;
