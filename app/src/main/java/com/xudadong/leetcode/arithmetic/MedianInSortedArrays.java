@@ -1,6 +1,10 @@
 package com.xudadong.leetcode.arithmetic;
 
-import com.xudadong.leetcode.contract.Model;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
+import com.xudadong.leetcode.R;
+import com.xudadong.leetcode.contract.RegularModel;
 
 import java.io.Serializable;
 
@@ -9,7 +13,7 @@ import java.io.Serializable;
  * <p>
  * Created by didi on 2019-09-27.
  */
-public class MedianInSortedArrays extends Model<MedianInSortedArrays.Input, Double> {
+public class MedianInSortedArrays extends RegularModel<MedianInSortedArrays.Input, Double> {
 
     @Override
     public String getTitle() {
@@ -23,6 +27,11 @@ public class MedianInSortedArrays extends Model<MedianInSortedArrays.Input, Doub
                 "\n" +
                 "示例 2:\n" +
                 "nums1 = [1, 2]，nums2 = [3, 4]，则中位数是 (2 + 3)/2 = 2.5";
+    }
+
+    @Override
+    public Drawable getCodeDrawable(Context context) {
+        return context.getResources().getDrawable(R.mipmap.code_median_in_sorted_arrays);
     }
 
     @Override

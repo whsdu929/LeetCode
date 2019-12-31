@@ -1,6 +1,11 @@
 package com.xudadong.leetcode.arithmetic.special;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
+import com.xudadong.leetcode.R;
+import com.xudadong.leetcode.contract.Model;
 
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
@@ -9,7 +14,7 @@ import java.util.concurrent.atomic.AtomicIntegerArray;
  * <p>
  * Created by didi on 2019-08-03.
  */
-public final class MultiThreadPrinter {
+public final class MultiThreadPrinter extends Model {
 
     private static final int THREAD_COUNT = 3;
     private static final int MIN_NUM = 1;
@@ -17,7 +22,7 @@ public final class MultiThreadPrinter {
     private static int mCurrNum = MIN_NUM;
     private static int mCurrThreadId = 1;
 
-    private final Object mLock = new Object();
+    private final Integer mLock = Integer.valueOf(13);
     private MutableLiveData<int[]> mMutableResultArray;
     private AtomicIntegerArray mAtomicResultArray;
     private volatile int mCurrIndex;
@@ -31,11 +36,12 @@ public final class MultiThreadPrinter {
         return "3个线程顺序打印数字1-100";
     }
 
-    public Void getInput() {
-        return null;
+    @Override
+    public Drawable getCodeDrawable(Context context) {
+        return context.getResources().getDrawable(R.mipmap.code_multi_thread_printer);
     }
 
-    public MutableLiveData<int[]> fun(Void input) {
+    public MutableLiveData<int[]> fun() {
         mAtomicResultArray = new AtomicIntegerArray(MAX_NUM - MIN_NUM + 1);
         mMutableResultArray = new MutableLiveData<>();
         mCurrIndex = 0;
@@ -47,17 +53,7 @@ public final class MultiThreadPrinter {
         return mMutableResultArray;
     }
 
-    public String getResult(MutableLiveData<int[]> result) {
-        StringBuffer sb = new StringBuffer();
-        int[] array = result.getValue();
-        for(int i = 0; i < array.length; i++) {
-            sb.append(array[i]).append(" ");
-        }
-        return sb.toString();
-    }
-
     class Printer implements Runnable {
-
         private int id;
 
         Printer(int id) {
@@ -94,5 +90,14 @@ public final class MultiThreadPrinter {
                 mLock.notifyAll();
             }
         }
+    }
+
+    public String getResult(MutableLiveData<int[]> result) {
+        StringBuffer sb = new StringBuffer();
+        int[] array = result.getValue();
+        for(int i = 0; i < array.length; i++) {
+            sb.append(array[i]).append(" ");
+        }
+        return sb.toString();
     }
 }

@@ -1,12 +1,16 @@
 package com.xudadong.leetcode.arithmetic.special;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.xudadong.leetcode.R;
+import com.xudadong.leetcode.contract.Model;
 
 import java.util.LinkedList;
 
@@ -15,7 +19,7 @@ import java.util.LinkedList;
  * <p>
  * Created by didi on 2019-07-13.
  */
-public class DepthOfViewGroup {
+public class DepthOfViewGroup extends Model {
 
     public String getTitle() {
         return "ViewGroup的深度";
@@ -23,6 +27,11 @@ public class DepthOfViewGroup {
 
     public String getDesc() {
         return "一个ViewGroup A，嵌套 View B1 和 ViewGroup B2，B2 又嵌套 ViewGroup C，求 A 的深度";
+    }
+
+    @Override
+    public Drawable getCodeDrawable(Context context) {
+        return context.getResources().getDrawable(R.mipmap.code_depth_of_viewgroup);
     }
 
     public ViewGroup getInput(Context context) {
@@ -36,7 +45,7 @@ public class DepthOfViewGroup {
         return A;
     }
 
-    public Integer fun(ViewGroup input) {
+    public int fun(ViewGroup input) {
         int depth = 0;
         LinkedList<View> queue = new LinkedList<>();
         queue.add(input);

@@ -10,13 +10,16 @@ import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xudadong.leetcode.contract.Model;
+import com.xudadong.leetcode.contract.RegularModel;
 
 public class DetailActivity extends AppCompatActivity {
 
     private static final String KEY_MODEL = "model";
+    private boolean isHidden = true;
 
     public static Intent getDetailIntent(Context context, Model model) {
         Intent intent = new Intent(context, DetailActivity.class);
@@ -36,34 +39,61 @@ public class DetailActivity extends AppCompatActivity {
         vDesc.setText(model.getDesc());
         final TextView vDetail = findViewById(R.id.tv_detail);
         final Button vBtn = findViewById(R.id.btn);
+        final ImageView vIv = findViewById(R.id.iv);
 
         vBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vDetail.setText(getResult(model, model.getResult(model.fun(model.getInput()))));
-                vBtn.setEnabled(false);
+                if (isHidden) {
+                    isHidden = false;
+                    vBtn.setText("隐藏算法");
+                    if (model.getCodeDrawable(DetailActivity.this) != null) {
+                        vIv.setVisibility(View.VISIBLE);
+                        vIv.setImageDrawable(model.getCodeDrawable(DetailActivity.this));
+                    } else {
+                        vIv.setVisibility(View.GONE);
+                    }
+                    vDetail.setText(null);
+                    inflateDetailView(vDetail, model);
+                    vDetail.setVisibility(View.VISIBLE);
+                } else {
+                    isHidden = true;
+                    vBtn.setText("显示算法");
+                    vIv.setVisibility(View.GONE);
+                    vDetail.setVisibility(View.GONE);
+                }
             }
         });
-
-        inflateKeywords(model.getKeywords());
     }
 
-    private void inflateKeywords(String[] keywords) {
+    private void inflateDetailView(TextView vDetail, Model model) {
+        SpannableString keySpannableString = inflateKeywords(model.getKeywords());
+        if (keySpannableString.length() > 0) {
+            vDetail.append(keySpannableString);
+            vDetail.append("\n\n");
+        }
+        if (model instanceof RegularModel) {
+            RegularModel regularModel = (RegularModel) model;
+            vDetail.append(inflateResult(model, regularModel.getResult(regularModel.fun(regularModel.getInput()))));
+        }
+    }
+
+    private SpannableString inflateKeywords(String[] keywords) {
         if (keywords != null && keywords.length > 0) {
-            String prefix = "算法关键词: ";
+            String prefix = "算法提示: ";
             String div = ", ";
-            TextView vKeywords = findViewById(R.id.tv_key);
             StringBuffer sb = new StringBuffer(prefix);
             for (String keyword : keywords) {
                 sb.append(keyword).append(div);
             }
             String str = sb.substring(0, sb.length() - div.length());
-            vKeywords.setText(createSpannableString(str, prefix.length(), str.length()));
+            return createSpannableString(str, prefix.length(), str.length());
         }
+        return new SpannableString("");
     }
 
-    private SpannableString getResult(Model model, String string) {
-        StringBuffer sb = new StringBuffer("\n").append("输出结果: ");
+    private SpannableString inflateResult(Model model, String string) {
+        StringBuffer sb = new StringBuffer().append("输出结果: ");
         int start = sb.length();
         sb.append(string);
         int end = sb.length();
@@ -92,7 +122,7 @@ public class DetailActivity extends AppCompatActivity {
     private SpannableString createSpannableString(String txt, int start, int end) {
         SpannableString spannableString = new SpannableString(txt);
         ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#228B22"));
-        spannableString.setSpan(foregroundColorSpan, start, end, Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        spannableString.setSpan(foregroundColorSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannableString;
     }
 }

@@ -7,6 +7,9 @@ import com.xudadong.leetcode.arithmetic.MedianInSortedArrays;
 import com.xudadong.leetcode.arithmetic.QuickSort;
 import com.xudadong.leetcode.arithmetic.ReverseLinkedList;
 import com.xudadong.leetcode.arithmetic.TwoSumLinkedList;
+import com.xudadong.leetcode.arithmetic.special.DepthOfViewGroup;
+import com.xudadong.leetcode.arithmetic.special.MultiThreadPrinter;
+import com.xudadong.leetcode.arithmetic.special.TwoSum;
 import com.xudadong.leetcode.contract.Model;
 
 import java.util.ArrayList;
@@ -29,14 +32,15 @@ public class ParseUtil {
         //todo 使用注解获取Model所有子类
         testSets = new HashSet<>();
         testSets.add(ReverseLinkedList.class);
-        //testSets.add(DepthOfViewGroup.class);
+        testSets.add(DepthOfViewGroup.class);
         testSets.add(QuickSort.class);
         testSets.add(BinarySearch.class);
-        //testSets.add(MultiThreadPrinter.class);
+        testSets.add(MultiThreadPrinter.class);
         testSets.add(BigNumberPlus.class);
         testSets.add(TwoSumLinkedList.class);
         testSets.add(LongestSubstring.class);
         testSets.add(MedianInSortedArrays.class);
+        testSets.add(TwoSum.class);
     }
 
     public static List<Model> parseData() {

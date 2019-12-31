@@ -1,5 +1,8 @@
 package com.xudadong.leetcode.contract;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +10,7 @@ import java.io.Serializable;
  * <p>
  * Created by didi on 2019-07-10.
  */
-public abstract class Model<T extends Serializable, V extends Serializable> implements Serializable {
+public abstract class Model implements Serializable {
 
     /**
      * 标题
@@ -24,31 +27,7 @@ public abstract class Model<T extends Serializable, V extends Serializable> impl
     /**
      * 代码实现
      */
-    protected String getCode() {
-        return "";
-    }
-
-    /**
-     * 输入数据
-     */
-    public abstract T getInput();
-
-    /**
-     * 实现方案1
-     */
-    public abstract V fun(T input);
-
-    /**
-     * 实现方案2
-     */
-    public V fun2(T input) {
-        return fun(input);
-    }
-
-    /**
-     * 输出结果
-     */
-    public abstract String getResult(V result);
+    public abstract Drawable getCodeDrawable(Context context);
 
     /**
      * 算法关键词

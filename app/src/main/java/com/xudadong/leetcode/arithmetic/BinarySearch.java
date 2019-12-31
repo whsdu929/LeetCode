@@ -1,13 +1,17 @@
 package com.xudadong.leetcode.arithmetic;
 
-import com.xudadong.leetcode.contract.Model;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
+import com.xudadong.leetcode.R;
+import com.xudadong.leetcode.contract.RegularModel;
 
 /**
  * 二分查找
  * <p>
  * Created by didi on 2019-08-01.
  */
-public class BinarySearch extends Model<int[], Integer> {
+public class BinarySearch extends RegularModel<int[], Integer> {
 
     @Override
     public String getTitle() {
@@ -17,6 +21,11 @@ public class BinarySearch extends Model<int[], Integer> {
     @Override
     public String getDesc() {
         return "二分查找，输入一个有序数组，数组最后一位是要查找的数字: 0, 1, 2, 4, 6, 7, 8, 9, 2";
+    }
+
+    @Override
+    public Drawable getCodeDrawable(Context context) {
+        return context.getResources().getDrawable(R.mipmap.code_binary_search);
     }
 
     @Override

@@ -1,6 +1,10 @@
 package com.xudadong.leetcode.arithmetic;
 
-import com.xudadong.leetcode.contract.Model;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+
+import com.xudadong.leetcode.R;
+import com.xudadong.leetcode.contract.RegularModel;
 
 import java.io.Serializable;
 
@@ -9,7 +13,7 @@ import java.io.Serializable;
  * <p>
  * Created by didi on 2019-07-10.
  */
-public class ReverseLinkedList extends Model<ReverseLinkedList.Node, ReverseLinkedList.Node> {
+public class ReverseLinkedList extends RegularModel<ReverseLinkedList.Node, ReverseLinkedList.Node> {
 
     @Override
     public String getTitle() {
@@ -19,6 +23,11 @@ public class ReverseLinkedList extends Model<ReverseLinkedList.Node, ReverseLink
     @Override
     public String getDesc() {
         return "输入: 1->2->3->4->5->NULL，输出: 5->4->3->2->1->NULL";
+    }
+
+    @Override
+    public Drawable getCodeDrawable(Context context) {
+        return context.getResources().getDrawable(R.mipmap.code_reverse_linkedlist);
     }
 
     @Override
