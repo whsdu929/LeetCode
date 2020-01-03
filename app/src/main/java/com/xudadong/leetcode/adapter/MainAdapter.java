@@ -1,12 +1,13 @@
 package com.xudadong.leetcode.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.xudadong.leetcode.DetailActivity;
 import com.xudadong.leetcode.R;
@@ -19,7 +20,7 @@ import java.util.List;
  * <p>
  * Created by didi on 2019-07-11.
  */
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     private Context mContext;
     private List<Model> mModelList;

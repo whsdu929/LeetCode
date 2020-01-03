@@ -1,8 +1,9 @@
 package com.xudadong.leetcode.arithmetic.special;
 
-import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+
+import androidx.lifecycle.MutableLiveData;
 
 import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.Model;
@@ -95,7 +96,7 @@ public final class MultiThreadPrinter extends Model {
     public String getResult(MutableLiveData<int[]> result) {
         StringBuffer sb = new StringBuffer();
         int[] array = result.getValue();
-        for(int i = 0; i < array.length; i++) {
+        for (int i = 0; i < array.length; i++) {
             sb.append(array[i]).append(" ");
         }
         return sb.toString();

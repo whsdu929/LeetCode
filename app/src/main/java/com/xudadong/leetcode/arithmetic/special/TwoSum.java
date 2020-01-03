@@ -42,11 +42,11 @@ public class TwoSum extends Model {
         }
         int[] result = null;
         ArrayList<Integer> list = new ArrayList<>(nums.length);
-        for(int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             list.add(nums[i]);
         }
-        for(int i = 0; i < nums.length; i++) {
-            if (list.contains(target - nums[i]) ) {
+        for (int i = 0; i < nums.length; i++) {
+            if (list.contains(target - nums[i])) {
                 int index = list.indexOf(target - nums[i]);
                 if (i != index) {
                     result = new int[]{i, index};
@@ -63,7 +63,7 @@ public class TwoSum extends Model {
         }
         int[] result = null;
         HashMap<Integer, Integer> hashMap = new HashMap<>();
-        for(int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) {
             if (hashMap.containsKey(nums[i])) {
                 result = new int[2];
                 result[0] = hashMap.get(nums[i]);

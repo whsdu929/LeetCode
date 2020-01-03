@@ -2,12 +2,13 @@ package com.xudadong.leetcode;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.xudadong.leetcode.adapter.MainAdapter;
 import com.xudadong.leetcode.contract.Model;
@@ -48,22 +49,15 @@ public class MainActivity extends AppCompatActivity {
         vRecyclerView.setVisibility(View.INVISIBLE);
         vLoading.setVisibility(View.VISIBLE);
 
-        disposable = Observable.defer(new Callable<ObservableSource<List<Model>>>() {
-            @Override
-            public ObservableSource<List<Model>> call() {
-                return Observable.fromArray(ParseUtil.parseData());
-            }
-        }).subscribeOn(Schedulers.io())
+        disposable = Observable.defer((Callable<ObservableSource<List<Model>>>) () -> Observable.fromArray(ParseUtil.parseData()))
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Model>>() {
-                    @Override
-                    public void accept(List<Model> leetModels) {
-                        vRecyclerView.setVisibility(View.VISIBLE);
-                        vLoading.setVisibility(View.INVISIBLE);
+                .subscribe(leetModels -> {
+                    vRecyclerView.setVisibility(View.VISIBLE);
+                    vLoading.setVisibility(View.INVISIBLE);
 
-                        MainAdapter adapter = new MainAdapter(MainActivity.this, leetModels);
-                        vRecyclerView.setAdapter(adapter);
-                    }
+                    MainAdapter adapter = new MainAdapter(this, leetModels);
+                    vRecyclerView.setAdapter(adapter);
                 });
     }
 
