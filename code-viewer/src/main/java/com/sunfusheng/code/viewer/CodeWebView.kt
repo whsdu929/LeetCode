@@ -37,14 +37,12 @@ class CodeWebView @JvmOverloads constructor(
     fun loadPage(page: String?) {
         if (page?.length == 0) return
 
-        post {
-            loadDataWithBaseURL(
-                "file:///android_asset/code_prettify/",
-                page,
-                "text/html",
-                "utf-8",
-                null
-            )
-        }
+        loadDataWithBaseURL(
+            "file:///android_asset/code_prettify/",
+            page,
+            "text/html",
+            "utf-8",
+            null
+        )
     }
 }

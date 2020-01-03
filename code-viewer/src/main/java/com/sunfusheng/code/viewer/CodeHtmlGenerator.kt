@@ -43,7 +43,9 @@ object CodeHtmlGenerator {
                 "</head>\n" +
                 "<body>\n" +
                 "<?prettify lang=" + extension + " linenums=" + lineNums + "?>\n" +
-                "<pre class=\"prettyprint\">\n" + sourceCode + "</pre>\n" +
+                "<pre class=\"prettyprint\">\n" +
+                sourceCode.replace("<", "&lt;").replace(">", "&gt;") +
+                "</pre>\n" +
                 "</body>\n" +
                 "</html>"
     }
