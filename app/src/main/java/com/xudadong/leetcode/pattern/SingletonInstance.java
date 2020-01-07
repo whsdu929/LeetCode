@@ -1,16 +1,23 @@
 package com.xudadong.leetcode.pattern;
 
+import com.xudadong.leetcode.contract.Model;
+
 /**
  * 单例模式的两种实现
  * <p>
  * Created by didi on 2019-08-02.
  */
-public final class SingletonInstance {
+public final class SingletonInstance extends Model {
 
     // 使用volatile修饰是防止19行出现 mInstance不为null，但依然没有完成初始化的情况
     private static volatile SingletonInstance mInstance = null;
 
-    private SingletonInstance() {}
+//    private SingletonInstance() {}
+
+    @Override
+    public String getTitle() {
+        return "单例模式";
+    }
 
     /**
      * 第一种实现

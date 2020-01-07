@@ -1,6 +1,5 @@
 package com.sunfusheng.code.viewer
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -48,7 +47,7 @@ class CodeViewerFragment : Fragment() {
             return fragment
         }
 
-        fun instance(context: Context, canonicalClazzName: String): CodeViewerFragment? {
+        fun instance(canonicalClazzName: String): CodeViewerFragment? {
             val sb = StringBuffer(DEFAULT_PATH_PREFIX).append(File.separator)
                 .append(canonicalClazzName.replace(".", File.separator)).append(DEFAULT_SUFFIX)
             return instance(DEFAULT_USER_NAME, DEFAULT_REPO_NAME, DEFAULT_BRANCH_NAME, sb.toString())

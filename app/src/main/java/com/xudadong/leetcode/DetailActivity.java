@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,7 +50,12 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         TextView vDesc = findViewById(R.id.tv_desc);
-        vDesc.setText(model.getDesc());
+        if (TextUtils.isEmpty((model.getDesc()))) {
+            vDesc.setVisibility(View.GONE);
+            findViewById(R.id.divider).setVisibility(View.GONE);
+        } else {
+            vDesc.setText(model.getDesc());
+        }
         final TextView vDetail = findViewById(R.id.tv_detail);
         final Button vBtn = findViewById(R.id.btn);
 
@@ -71,9 +77,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void loadFragment() {
-        fragment = CodeViewerFragment.Companion.instance(
-                this, model.getClass().getCanonicalName()
-        );
+        fragment = CodeViewerFragment.Companion.instance(model.getClass().getCanonicalName());
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -82,10 +86,13 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setFragmentVisibility(boolean isVisible) {
-        if (isVisible && fragment == null) {
-            loadFragment();
+        if (fragment == null) {
+            if (isVisible) {
+                loadFragment();
+            }
             return;
         }
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         if (isVisible) {
             fragmentTransaction.show(fragment);

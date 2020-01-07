@@ -11,6 +11,8 @@ import com.xudadong.leetcode.arithmetic.special.DepthOfViewGroup;
 import com.xudadong.leetcode.arithmetic.special.MultiThreadPrinter;
 import com.xudadong.leetcode.arithmetic.special.TwoSum;
 import com.xudadong.leetcode.contract.Model;
+import com.xudadong.leetcode.pattern.ProducerConsumer;
+import com.xudadong.leetcode.pattern.SingletonInstance;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,6 +43,8 @@ public class ParseUtil {
         testSets.add(LongestSubstring.class);
         testSets.add(MedianInSortedArrays.class);
         testSets.add(TwoSum.class);
+        testSets.add(ProducerConsumer.class);
+        testSets.add(SingletonInstance.class);
     }
 
     public static List<Model> parseData() {

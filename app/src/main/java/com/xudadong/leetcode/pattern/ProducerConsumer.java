@@ -1,5 +1,7 @@
 package com.xudadong.leetcode.pattern;
 
+import com.xudadong.leetcode.contract.Model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +10,15 @@ import java.util.List;
  * <p>
  * Created by didi on 2019-08-02.
  */
-public class ProducerConsumer {
+public class ProducerConsumer extends Model {
 
     private static final int MAX_SIZE = 10;
     private List<Object> mProductList = new ArrayList<>();
+
+    @Override
+    public String getTitle() {
+        return "生产者消费者模式";
+    }
 
     class Producer extends Thread {
         @Override
