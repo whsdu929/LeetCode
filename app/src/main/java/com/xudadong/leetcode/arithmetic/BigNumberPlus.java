@@ -1,9 +1,5 @@
 package com.xudadong.leetcode.arithmetic;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
-import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.RegularModel;
 
 /**
@@ -21,11 +17,6 @@ public class BigNumberPlus extends RegularModel<String[], String> {
     @Override
     public String getDesc() {
         return "输入:\"2345\",\"658097\"，输出:\"660442\"";
-    }
-
-    @Override
-    public Drawable getCodeDrawable(Context context) {
-        return context.getResources().getDrawable(R.mipmap.code_big_number_plus);
     }
 
     @Override

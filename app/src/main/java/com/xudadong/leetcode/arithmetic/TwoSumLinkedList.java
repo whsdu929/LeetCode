@@ -1,9 +1,5 @@
 package com.xudadong.leetcode.arithmetic;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
-import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.RegularModel;
 
 import java.io.Serializable;
@@ -30,11 +26,6 @@ public class TwoSumLinkedList extends RegularModel<TwoSumLinkedList.ListNode[], 
                 "输入：(2 -> 4 -> 3) + (5 -> 6 -> 4)\n" +
                 "输出：7 -> 0 -> 8\n" +
                 "原因：342 + 465 = 807";
-    }
-
-    @Override
-    public Drawable getCodeDrawable(Context context) {
-        return context.getResources().getDrawable(R.mipmap.code_two_sum_linkedlist);
     }
 
     @Override

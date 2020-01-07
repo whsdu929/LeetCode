@@ -7,20 +7,28 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.sunfusheng.code.viewer.CodeViewerFragment;
 import com.xudadong.leetcode.contract.Model;
 import com.xudadong.leetcode.contract.RegularModel;
+
+import java.util.Objects;
 
 public class DetailActivity extends AppCompatActivity {
 
     private static final String KEY_MODEL = "model";
     private boolean isHidden = true;
+    private CodeViewerFragment fragment;
+    private Model model;
 
     public static Intent getDetailIntent(Context context, Model model) {
         Intent intent = new Intent(context, DetailActivity.class);
@@ -33,38 +41,58 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        final Model model = (Model) getIntent().getSerializableExtra(KEY_MODEL);
-        setTitle(model.getTitle());
+        model = (Model) getIntent().getSerializableExtra(KEY_MODEL);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle(model.getTitle());
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         TextView vDesc = findViewById(R.id.tv_desc);
         vDesc.setText(model.getDesc());
         final TextView vDetail = findViewById(R.id.tv_detail);
         final Button vBtn = findViewById(R.id.btn);
-        final ImageView vIv = findViewById(R.id.iv);
 
-        vBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isHidden) {
-                    isHidden = false;
-                    vBtn.setText("隐藏算法");
-                    if (model.getCodeDrawable(DetailActivity.this) != null) {
-                        vIv.setVisibility(View.VISIBLE);
-                        vIv.setImageDrawable(model.getCodeDrawable(DetailActivity.this));
-                    } else {
-                        vIv.setVisibility(View.GONE);
-                    }
-                    vDetail.setText(null);
-                    inflateDetailView(vDetail, model);
-                    vDetail.setVisibility(View.VISIBLE);
-                } else {
-                    isHidden = true;
-                    vBtn.setText("显示算法");
-                    vIv.setVisibility(View.GONE);
-                    vDetail.setVisibility(View.GONE);
-                }
+        vBtn.setOnClickListener(v -> {
+            if (isHidden) {
+                isHidden = false;
+                vBtn.setText("隐藏算法");
+                setFragmentVisibility(true);
+                vDetail.setText(null);
+                inflateDetailView(vDetail, model);
+                vDetail.setVisibility(View.VISIBLE);
+            } else {
+                isHidden = true;
+                vBtn.setText("显示算法");
+                setFragmentVisibility(false);
+                vDetail.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void loadFragment() {
+        fragment = CodeViewerFragment.Companion.instance(
+                this, model.getClass().getCanonicalName()
+        );
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.container, Objects.requireNonNull(fragment));
+        fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    private void setFragmentVisibility(boolean isVisible) {
+        if (isVisible && fragment == null) {
+            loadFragment();
+            return;
+        }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if (isVisible) {
+            fragmentTransaction.show(fragment);
+        } else {
+            fragmentTransaction.hide(fragment);
+        }
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     private void inflateDetailView(TextView vDetail, Model model) {
@@ -125,5 +153,14 @@ public class DetailActivity extends AppCompatActivity {
         ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#228B22"));
         spannableString.setSpan(foregroundColorSpan, start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         return spannableString;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

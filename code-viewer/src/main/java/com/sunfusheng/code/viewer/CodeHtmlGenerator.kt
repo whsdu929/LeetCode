@@ -15,7 +15,7 @@ object CodeHtmlGenerator {
         val extension = MimeTypeMap.getFileExtensionFromUrl(codeFilePath)
         val whiteColor = context.applicationContext.resources.getColor(android.R.color.white)
         val backgroundColor = "#${Integer.toHexString(whiteColor)}"
-        return generateCodeHtml(sourceCode!!, extension, backgroundColor, false, true)
+        return generateCodeHtml(sourceCode!!, extension, backgroundColor, false, false)
     }
 
     private fun generateCodeHtml(

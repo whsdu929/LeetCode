@@ -41,7 +41,7 @@ public class AboutActivity extends AppCompatActivity {
                 "whsdu929",
                 "LeetCode",
                 "master",
-                "app/src/main/java/com/xudadong/leetcode/arithmetic/BigNumberPlus.java"
+                "arithmetic/BigNumberPlus.java"
         );
 
         FragmentManager fragmentManager = getSupportFragmentManager();

@@ -1,9 +1,5 @@
 package com.xudadong.leetcode.arithmetic.special;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
-import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.Model;
 
 import java.util.ArrayList;
@@ -29,11 +25,6 @@ public class TwoSum extends Model {
                 "给定 nums = [2, 7, 11, 15], target = 9\n" +
                 "因为 nums[0] + nums[1] = 2 + 7 = 9\n" +
                 "所以返回 [0, 1]";
-    }
-
-    @Override
-    public Drawable getCodeDrawable(Context context) {
-        return context.getResources().getDrawable(R.mipmap.code_two_sum);
     }
 
     public int[] fun(int[] nums, int target) {

@@ -1,5 +1,6 @@
 package com.sunfusheng.code.viewer
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,10 +21,16 @@ import java.io.File
 class CodeViewerFragment : Fragment() {
 
     companion object {
-        const val USER_NAME = "user_name"
-        const val REPO_NAME = "repo_name"
-        const val BRANCH_NAME = "branch_name"
-        const val PATH = "path"
+        private const val DEFAULT_USER_NAME = "whsdu929"
+        private const val DEFAULT_REPO_NAME  = "LeetCode"
+        private const val DEFAULT_BRANCH_NAME = "master"
+        private const val DEFAULT_PATH_PREFIX = "app/src/main/java"
+        private const val DEFAULT_SUFFIX = ".java"
+
+        const val KEY_USER_NAME = "user_name"
+        const val KEY_REPO_NAME = "repo_name"
+        const val KEY_BRANCH_NAME = "branch_name"
+        const val KEY_PATH = "path"
 
         fun instance(
             userName: String,
@@ -33,12 +40,18 @@ class CodeViewerFragment : Fragment() {
         ): CodeViewerFragment? {
             val fragment = CodeViewerFragment()
             val bundle = Bundle()
-            bundle.putString(USER_NAME, userName)
-            bundle.putString(REPO_NAME, repoName)
-            bundle.putString(BRANCH_NAME, branchName)
-            bundle.putString(PATH, path)
+            bundle.putString(KEY_USER_NAME, userName)
+            bundle.putString(KEY_REPO_NAME, repoName)
+            bundle.putString(KEY_BRANCH_NAME, branchName)
+            bundle.putString(KEY_PATH, path)
             fragment.arguments = bundle
             return fragment
+        }
+
+        fun instance(context: Context, canonicalClazzName: String): CodeViewerFragment? {
+            val sb = StringBuffer(DEFAULT_PATH_PREFIX).append(File.separator)
+                .append(canonicalClazzName.replace(".", File.separator)).append(DEFAULT_SUFFIX)
+            return instance(DEFAULT_USER_NAME, DEFAULT_REPO_NAME, DEFAULT_BRANCH_NAME, sb.toString())
         }
     }
 
@@ -48,10 +61,10 @@ class CodeViewerFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val temp: StringBuilder = StringBuilder("https://raw.githubusercontent.com/")
-        temp.append(arguments?.getString(USER_NAME)).append(File.separator)
-        temp.append(arguments?.getString(REPO_NAME)).append(File.separator)
-        temp.append(arguments?.getString(BRANCH_NAME)).append(File.separator)
-        temp.append(arguments?.getString(PATH))
+        temp.append(arguments?.getString(KEY_USER_NAME)).append(File.separator)
+        temp.append(arguments?.getString(KEY_REPO_NAME)).append(File.separator)
+        temp.append(arguments?.getString(KEY_BRANCH_NAME)).append(File.separator)
+        temp.append(arguments?.getString(KEY_PATH))
 
         mCodeFilePath = temp.toString()
         Log.d("sfs", "mCodeFilePath: " + mCodeFilePath)

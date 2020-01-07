@@ -1,11 +1,7 @@
 package com.xudadong.leetcode.arithmetic.special;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
 import androidx.lifecycle.MutableLiveData;
 
-import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.Model;
 
 import java.util.concurrent.atomic.AtomicIntegerArray;
@@ -35,11 +31,6 @@ public final class MultiThreadPrinter extends Model {
 
     public String getDesc() {
         return "3个线程顺序打印数字1-100";
-    }
-
-    @Override
-    public Drawable getCodeDrawable(Context context) {
-        return context.getResources().getDrawable(R.mipmap.code_multi_thread_printer);
     }
 
     public MutableLiveData<int[]> fun() {

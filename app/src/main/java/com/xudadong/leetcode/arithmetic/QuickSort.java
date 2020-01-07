@@ -1,9 +1,5 @@
 package com.xudadong.leetcode.arithmetic;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
-import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.RegularModel;
 
 /**
@@ -26,11 +22,6 @@ public class QuickSort extends RegularModel<int[], int[]> {
     @Override
     public int[] getInput() {
         return new int[]{7, 8, 0, 2, 1, 9, 3, 6, 5, 4};
-    }
-
-    @Override
-    public Drawable getCodeDrawable(Context context) {
-        return context.getResources().getDrawable(R.mipmap.code_quick_sort);
     }
 
     @Override

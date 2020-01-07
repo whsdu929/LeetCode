@@ -1,8 +1,5 @@
 package com.xudadong.leetcode.contract;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-
 import java.io.Serializable;
 
 /**
@@ -23,11 +20,6 @@ public abstract class Model implements Serializable {
     public String getDesc() {
         return "";
     }
-
-    /**
-     * 代码实现
-     */
-    public abstract Drawable getCodeDrawable(Context context);
 
     /**
      * 算法关键词

@@ -30,7 +30,7 @@ class CodeWebView @JvmOverloads constructor(
         scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
         settings.setSupportZoom(true)
         settings.builtInZoomControls = true
-        settings.displayZoomControls = false
+        setInitialScale(25)
         setOnLongClickListener { v: View? -> false }
     }
 
