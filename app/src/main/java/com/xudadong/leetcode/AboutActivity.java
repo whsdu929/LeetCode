@@ -38,7 +38,10 @@ public class AboutActivity extends AppCompatActivity {
 
     void loadFragment() {
         CodeViewerFragment codeViewerFragment = CodeViewerFragment.Companion.instance(
-                "https://raw.githubusercontent.com/whsdu929/LeetCode/master/app/src/main/java/com/xudadong/leetcode/arithmetic/BigNumberPlus.java"
+                "whsdu929",
+                "LeetCode",
+                "master",
+                "app/src/main/java/com/xudadong/leetcode/arithmetic/BigNumberPlus.java"
         );
 
         FragmentManager fragmentManager = getSupportFragmentManager();

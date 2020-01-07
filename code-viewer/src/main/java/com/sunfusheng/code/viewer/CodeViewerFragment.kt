@@ -1,6 +1,7 @@
 package com.sunfusheng.code.viewer
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.io.File
 
 /**
  * @author sunfusheng
@@ -18,20 +20,41 @@ import kotlinx.coroutines.launch
 class CodeViewerFragment : Fragment() {
 
     companion object {
-        fun instance(codeFilePath: String): CodeViewerFragment? {
+        const val USER_NAME = "user_name"
+        const val REPO_NAME = "repo_name"
+        const val BRANCH_NAME = "branch_name"
+        const val PATH = "path"
+
+        fun instance(
+            userName: String,
+            repoName: String,
+            branchName: String,
+            path: String
+        ): CodeViewerFragment? {
             val fragment = CodeViewerFragment()
             val bundle = Bundle()
-            bundle.putString("codeFilePath", codeFilePath)
+            bundle.putString(USER_NAME, userName)
+            bundle.putString(REPO_NAME, repoName)
+            bundle.putString(BRANCH_NAME, branchName)
+            bundle.putString(PATH, path)
             fragment.arguments = bundle
             return fragment
         }
     }
 
-    private var codeFilePath: String? = null
+    private var mCodeFilePath: String? = null
+    private var mJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        codeFilePath = arguments?.getString("codeFilePath")
+        val temp: StringBuilder = StringBuilder("https://raw.githubusercontent.com/")
+        temp.append(arguments?.getString(USER_NAME)).append(File.separator)
+        temp.append(arguments?.getString(REPO_NAME)).append(File.separator)
+        temp.append(arguments?.getString(BRANCH_NAME)).append(File.separator)
+        temp.append(arguments?.getString(PATH))
+
+        mCodeFilePath = temp.toString()
+        Log.d("sfs", "mCodeFilePath: " + mCodeFilePath)
     }
 
     override fun onCreateView(
@@ -47,20 +70,18 @@ class CodeViewerFragment : Fragment() {
         fetchCodeFile()
     }
 
-    private var mJob: Job? = null
-
     private fun fetchCodeFile() {
         mJob = GlobalScope.launch(Dispatchers.Main) {
-            val result = CodeFileFetcher.fetch(codeFilePath!!)
-            val codePage = CodeHtmlGenerator.generate(context, codeFilePath, result)
+            val result = CodeFileFetcher.fetch(mCodeFilePath!!)
+            val codePage = CodeHtmlGenerator.generate(context, mCodeFilePath, result)
             vCodeWebView.loadPage(codePage)
         }
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
         if (mJob?.isActive == true) {
             mJob?.cancel()
         }
-        super.onDestroy()
+        super.onDestroyView()
     }
 }

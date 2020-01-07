@@ -16,9 +16,4 @@ https://raw.githubusercontent.com/whsdu929/LeetCode/master/app/src/main/java/com
 
 https://raw.githubusercontent.com/whsdu929/LeetCode/master/README.md
 
-https://raw.githubusercontent.com/sunfusheng/MultiType/master/README.md
-
-
-### code-prettify
-
-[code-prettify](https://github.com/google/code-prettify)
+### [code-prettify](https://github.com/google/code-prettify)
