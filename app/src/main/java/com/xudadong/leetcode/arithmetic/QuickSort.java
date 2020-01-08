@@ -1,13 +1,16 @@
 package com.xudadong.leetcode.arithmetic;
 
+import com.sunfusheng.spi.core.Provide;
 import com.xudadong.leetcode.contract.RegularModel;
+import com.xudadong.leetcode.group.ISortGroup;
 
 /**
  * 快排
  * <p>
  * Created by didi on 2019-08-01.
  */
-public class QuickSort extends RegularModel<int[], int[]> {
+@Provide(ISortGroup.class)
+public class QuickSort extends RegularModel<int[], int[]> implements ISortGroup {
 
     @Override
     public String getTitle() {

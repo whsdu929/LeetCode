@@ -1,13 +1,16 @@
 package com.xudadong.leetcode.arithmetic;
 
+import com.sunfusheng.spi.core.Provide;
 import com.xudadong.leetcode.contract.RegularModel;
+import com.xudadong.leetcode.group.ISortGroup;
 
 /**
  * 二分查找
  * <p>
  * Created by didi on 2019-08-01.
  */
-public class BinarySearch extends RegularModel<int[], Integer> {
+@Provide(ISortGroup.class)
+public class BinarySearch extends RegularModel<int[], Integer> implements ISortGroup {
 
     @Override
     public String getTitle() {

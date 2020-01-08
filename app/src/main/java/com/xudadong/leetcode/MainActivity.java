@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle(R.string.app_name);
-            actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
         final RecyclerView vRecyclerView = findViewById(R.id.recyclerView);
@@ -62,25 +61,21 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_menu, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+        if (item.getItemId() == R.id.action_about) {
+            startActivity(new Intent(getApplicationContext(), AboutActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        moveTaskToBack(false);
-    }
 
     @Override
     protected void onDestroy() {
