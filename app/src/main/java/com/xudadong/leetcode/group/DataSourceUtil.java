@@ -14,11 +14,8 @@ import java.util.List;
  */
 public class DataSourceUtil {
 
-    /**
-     * @param groupClass 分组标志接口
-     * @return 获取分组算法类路径列表
-     */
-    public static <T> List<String> getGroup(Class<T> groupClass) {
+    // 根据分组标志接口，获取分组算法类路径列表
+    public static <T extends IGroup> List<String> getGroup(Class<T> groupClass) {
         List<String> result = new ArrayList<>();
         List<T> items = ServiceProvider.getProviders(groupClass);
         if (items.size() > 0) {
@@ -30,6 +27,21 @@ public class DataSourceUtil {
             }
         }
         return result;
+    }
+
+    // 根据分组标志接口，获取分组名字
+    public static <T extends IGroup> String getGroupName(Class<T> groupClass) {
+        try {
+            T groupClassImpl = ServiceProvider.getProvider(groupClass);
+            if (groupClassImpl == null) {
+                throw new IllegalArgumentException("You should at least provide an implementation class for " + groupClass.getSimpleName() + " interface!");
+            }
+            IGroup groupClassImplInstance = groupClassImpl.getClass().newInstance();
+            return groupClassImplInstance.getGroupName();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
     // 排序分组
