@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.sunfusheng.spi'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion compile_sdk_version

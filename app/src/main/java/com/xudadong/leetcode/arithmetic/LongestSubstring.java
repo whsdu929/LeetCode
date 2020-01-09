@@ -30,7 +30,7 @@ public class LongestSubstring extends RegularModel<String, Integer> {
     }
 
     @Override
-    public Integer fun(String input) {
+    public Integer execute(String input) {
         if (input == null || input.length() == 0) {
             return 0;
         }

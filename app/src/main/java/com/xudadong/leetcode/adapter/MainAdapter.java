@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xudadong.leetcode.DetailActivity;
+import com.xudadong.leetcode.NewDetailActivity;
 import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.Model;
 
@@ -41,12 +41,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         final Model model = mModelList.get(position);
         viewHolder.vText.setText(model.getTitle());
-        viewHolder.vItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.startActivity(DetailActivity.getDetailIntent(mContext, model));
-            }
-        });
+        viewHolder.vItem.setOnClickListener(v -> mContext.startActivity(NewDetailActivity.Companion.instance(mContext, model)));
     }
 
     @Override

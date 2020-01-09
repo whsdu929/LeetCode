@@ -33,7 +33,7 @@ public class MedianInSortedArrays extends RegularModel<MedianInSortedArrays.Inpu
     }
 
     @Override
-    public Double fun(Input input) {
+    public Double execute(Input input) {
         return findMedianSortedArrays(input.num1, input.num2);
     }
 

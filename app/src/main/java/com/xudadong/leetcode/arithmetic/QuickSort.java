@@ -28,7 +28,7 @@ public class QuickSort extends RegularModel<int[], int[]> implements ISortGroup 
     }
 
     @Override
-    public int[] fun(int[] input) {
+    public int[] execute(int[] input) {
         quickSort(input, 0, input.length - 1);
         return input;
     }

@@ -110,7 +110,7 @@ public class DetailActivity extends AppCompatActivity {
         }
         if (model instanceof RegularModel) {
             RegularModel regularModel = (RegularModel) model;
-            vDetail.append(inflateResult(model, regularModel.getResult(regularModel.fun(regularModel.getInput()))));
+            vDetail.append(inflateResult(model, regularModel.getResult(regularModel.execute(regularModel.getInput()))));
         }
     }
 

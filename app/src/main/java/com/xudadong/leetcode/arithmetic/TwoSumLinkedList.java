@@ -37,7 +37,7 @@ public class TwoSumLinkedList extends RegularModel<TwoSumLinkedList.ListNode[], 
     }
 
     @Override
-    public ListNode fun(ListNode[] input) {
+    public ListNode execute(ListNode[] input) {
         return addTwoNumbers2(input[0], input[1]);
     }
 

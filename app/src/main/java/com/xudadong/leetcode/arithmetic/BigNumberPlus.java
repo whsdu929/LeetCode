@@ -25,7 +25,7 @@ public class BigNumberPlus extends RegularModel<String[], String> {
     }
 
     @Override
-    public String fun(String[] strArr) {
+    public String execute(String[] strArr) {
         int lenA = strArr[0].length();
         int lenB = strArr[1].length();
         if (lenA > lenB) {

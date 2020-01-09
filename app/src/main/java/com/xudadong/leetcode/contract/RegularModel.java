@@ -17,13 +17,13 @@ public abstract class RegularModel<T extends Serializable, V extends Serializabl
     /**
      * 实现方案1
      */
-    public abstract V fun(T input);
+    public abstract V execute(T input);
 
     /**
      * 实现方案2
      */
-    public V fun2(T input) {
-        return fun(input);
+    public V execute2(T input) {
+        return execute(input);
     }
 
     /**

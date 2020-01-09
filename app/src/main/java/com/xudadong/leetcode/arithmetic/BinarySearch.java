@@ -28,7 +28,7 @@ public class BinarySearch extends RegularModel<int[], Integer> implements ISortG
     }
 
     @Override
-    public Integer fun(int[] array) {
+    public Integer execute(int[] array) {
         int resultIndex = -1;
         if (array != null && array.length > 1) {
             int findValue = array[array.length - 1];

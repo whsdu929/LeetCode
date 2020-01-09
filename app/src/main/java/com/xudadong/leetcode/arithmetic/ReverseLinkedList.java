@@ -38,7 +38,7 @@ public class ReverseLinkedList extends RegularModel<ReverseLinkedList.Node, Reve
 
     //方案1：迭代，时间复杂度：O(n)，空间复杂度：O(1)
     @Override
-    public ReverseLinkedList.Node fun(Node head) {
+    public ReverseLinkedList.Node execute(Node head) {
         Node prev = null;
         Node curr = head;
 
@@ -53,12 +53,12 @@ public class ReverseLinkedList extends RegularModel<ReverseLinkedList.Node, Reve
 
     //方案2：递归，时间复杂度：O(n)，空间复杂度：O(n)
     @Override
-    public ReverseLinkedList.Node fun2(Node head) {
+    public ReverseLinkedList.Node execute2(Node head) {
         if (head == null || head.next == null) {
             return head;
         }
 
-        Node temp = fun2(head.next);
+        Node temp = execute2(head.next);
         head.next.next = head;
         head.next = null;
         return temp;
