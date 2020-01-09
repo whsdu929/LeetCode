@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.xudadong.leetcode.NewDetailActivity;
+import com.xudadong.leetcode.ui.NewDetailActivity;
 import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.Model;
 

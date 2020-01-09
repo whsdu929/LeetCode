@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.xudadong.leetcode.adapter.MainAdapter;
 import com.xudadong.leetcode.contract.Model;
+import com.xudadong.leetcode.ui.AboutActivity;
 import com.xudadong.leetcode.utils.ParseUtil;
 
 import java.util.List;

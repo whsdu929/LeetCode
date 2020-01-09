@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewDetailActivity"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,11 +26,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".DetailActivity"
+            android:name=".ui.DetailActivity"
             android:screenOrientation="portrait" />
+
         <activity
-            android:name=".AboutActivity"
+            android:name=".ui.NewDetailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.AboutActivity"
             android:screenOrientation="portrait" />
     </application>
 

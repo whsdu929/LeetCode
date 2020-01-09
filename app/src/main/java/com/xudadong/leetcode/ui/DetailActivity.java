@@ -1,4 +1,4 @@
-package com.xudadong.leetcode;
+package com.xudadong.leetcode.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.sunfusheng.code.viewer.CodeViewerFragment;
+import com.xudadong.leetcode.R;
 import com.xudadong.leetcode.contract.Model;
 import com.xudadong.leetcode.contract.RegularModel;
 
