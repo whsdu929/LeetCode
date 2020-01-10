@@ -23,23 +23,22 @@ class DetailActivity : BaseActivity() {
         }
     }
 
-    private var mModel: Model? = null
+    private lateinit var mModel: Model
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_detail)
 
         mModel = intent?.getSerializableExtra(KEY_MODEL) as Model
-        mModel ?: finish()
 
-        initActionBar(mModel?.title!!, true)
+        initActionBar(mModel.title, true)
 
         viewPager2.adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount() = 2
 
             override fun createFragment(position: Int): Fragment {
-                return (if (position == 0) MultiTabDetailFragment.instance(mModel!!)
-                else CodeViewerFragment.instance(mModel!!.javaClass.canonicalName!!))
+                return (if (position == 0) MultiTabDetailFragment.instance(mModel)
+                else CodeViewerFragment.instance(canonicalClazzPath = mModel.javaClass.canonicalName!!))
             }
         }
 

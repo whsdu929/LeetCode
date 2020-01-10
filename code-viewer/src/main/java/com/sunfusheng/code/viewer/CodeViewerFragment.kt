@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_code_viewer.*
 import kotlinx.coroutines.Dispatchers
@@ -35,23 +36,14 @@ class CodeViewerFragment : Fragment() {
             canonicalClazzPath: String = ""
         ): CodeViewerFragment {
             val fragment = CodeViewerFragment()
-            val bundle = Bundle()
             val path = "app/src/main/java/${canonicalClazzPath.replace(".", File.separator)}.java"
-            bundle.putString(KEY_USER_NAME, userName)
-            bundle.putString(KEY_REPO_NAME, repoName)
-            bundle.putString(KEY_BRANCH_NAME, branchName)
-            bundle.putString(KEY_PATH, path)
-            fragment.arguments = bundle
-            return fragment
-        }
-
-        fun instance(canonicalClazzPath: String): CodeViewerFragment {
-            return instance(
-                userName = DEFAULT_USER_NAME,
-                repoName = DEFAULT_REPO_NAME,
-                branchName = DEFAULT_BRANCH_NAME,
-                canonicalClazzPath = canonicalClazzPath
+            fragment.arguments = bundleOf(
+                KEY_USER_NAME to userName,
+                KEY_REPO_NAME to repoName,
+                KEY_BRANCH_NAME to branchName,
+                KEY_PATH to path
             )
+            return fragment
         }
     }
 

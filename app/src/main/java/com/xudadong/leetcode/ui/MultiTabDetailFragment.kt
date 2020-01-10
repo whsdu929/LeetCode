@@ -50,11 +50,11 @@ class MultiTabDetailFragment : Fragment() {
             vDetail.append("\n\n")
         }
         if (model is RegularModel<*, *>) {
-            var regularModel = model as? RegularModel<Serializable?, Serializable?>
+            val regularModel = model as RegularModel<Serializable?, Serializable?>
             vDetail.append(
                 inflateResult(
                     model,
-                    regularModel!!.getResult(regularModel.execute(regularModel!!.input))
+                    regularModel.getResult(regularModel.execute(regularModel.input))
                 )
             )
         }

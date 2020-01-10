@@ -25,28 +25,29 @@ object CodeHtmlGenerator {
         wrap: Boolean,
         lineNums: Boolean
     ): String? {
-        return "<html>\n" +
-                "<head>\n" +
-                "<meta charset=\"utf-8\" />\n" +
-                "<title>Code Viewer</title>\n" +
-                "<meta name=\"viewport\" content=\"width=device-width; initial-scale=1.0;\"/>" +
-                "<script src=\"./core/run_prettify.js?autoload=true&amp;skin=prettify&amp;" +
-                "lang=" + extension + "&amp;\" defer></script>\n" +
-                "<style>" +
-                "body {background: " + backgroundColor + ";}" +
-                ".prettyprint {background: " + backgroundColor + ";}" +
-                "pre.prettyprint {" +
-                " word-wrap: " + (if (wrap) "break-word" else "normal") + "; " +
-                " white-space: " + (if (wrap) "pre-wrap" else "no-wrap") + "; " +
-                "}" +
-                "</style>" +
-                "</head>\n" +
-                "<body>\n" +
-                "<?prettify lang=" + extension + " linenums=" + lineNums + "?>\n" +
-                "<pre class=\"prettyprint\">\n" +
-                sourceCode.replace("<", "&lt;").replace(">", "&gt;") +
-                "</pre>\n" +
-                "</body>\n" +
-                "</html>"
+        return """
+            <html>
+                <head>
+                    <meta charset="utf-8" />
+                    <title>Code Viewer</title>
+                    <meta name="viewport" content="width=device-width; initial-scale=1.0;"/>
+                    <script src="./core/run_prettify.js?autoload=true&amp;skin=prettify&amp;lang=$extension&amp;" defer></script>
+                    <style>
+                        body {background: $backgroundColor;}
+                        .prettyprint {background: $backgroundColor;}
+                        pre.prettyprint {
+                            word-wrap: ${if (wrap) "break-word" else "normal"};
+                            white-space: ${if (wrap) "pre-wrap" else "no-wrap"};
+                        }
+                    </style>
+                </head>
+                <body>
+                    <?prettify lang=$extension linenums=$lineNums?>
+                    <pre class="prettyprint">
+${sourceCode.replace("<", "&lt;").replace(">", "&gt;")}
+                    </pre>
+                </body>
+            </html>
+        """
     }
 }
