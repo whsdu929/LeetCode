@@ -36,7 +36,7 @@ public final class SingletonInstance extends Model {
 
     /**
      * 第二种实现
-     *
+     * <p>
      * 假设线程A和B都试图访问getInstance2()，线程A先使用了静态类SingletonHolder的静态字段INSTANCE，
      * 因此SingletonHolder这个类被初始化了，JVM会保证这个过程是线程互斥的，保证只初始化一次。
      * 而SingletonHolder这个类只有在调getInstance2()方法时才被初始化，因而也相当于是懒加载了。

@@ -66,3 +66,14 @@ class MainActivity : BaseActivity() {
         super.onDestroy()
     }
 }
+
+class Bird(name: String, private var age: Int) {
+
+    init {
+        this.age = 0
+    }
+
+    init {
+
+    }
+}
