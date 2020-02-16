@@ -21,6 +21,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+//    copy {
+//        from '../app/src/main/java/com/xudadong/leetcode/group/'
+//        into '../app/src/main/assets/'
+//    }
+
     signingConfigs {
         release {
             storeFile file(signingProperties['KEYSTORE_FILEPATH'])
