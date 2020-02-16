@@ -1,4 +1,4 @@
-package com.xudadong.leetcode.arithmetic;
+package com.xudadong.leetcode.algorithm;
 
 import com.xudadong.leetcode.contract.RegularModel;
 
@@ -37,9 +37,9 @@ public class BigNumberPlus extends RegularModel<String[], String> {
         for (int i = strArr[0].length() - 1; i >= 0; i--) {
             int ai = Integer.parseInt(strArr[0].charAt(i) + "");
             int bi = Integer.parseInt(strArr[1].charAt(i) + "");
-            int ci = arr[i+1];
+            int ci = arr[i + 1];
             int tmp = ai + bi + ci;
-            arr[i+1] = tmp % 10;
+            arr[i + 1] = tmp % 10;
             arr[i] = tmp / 10;
         }
         StringBuffer sb = new StringBuffer();

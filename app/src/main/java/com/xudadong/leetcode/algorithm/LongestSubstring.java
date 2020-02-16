@@ -1,4 +1,4 @@
-package com.xudadong.leetcode.arithmetic;
+package com.xudadong.leetcode.algorithm;
 
 import com.xudadong.leetcode.contract.RegularModel;
 
@@ -41,18 +41,18 @@ public class LongestSubstring extends RegularModel<String, Integer> {
         while (end + 1 < chars.length) {
             int i;
             for (i = start; i <= end; i++) {
-                if (chars[i] == chars[end+1]) {
+                if (chars[i] == chars[end + 1]) {
                     break;
                 }
             }
             if (i < end + 1) {
-                start = i+1;
+                start = i + 1;
             }
             int len = end + 1 - start + 1;
             if (max < len) {
                 max = len;
             }
-            end ++;
+            end++;
         }
         return max;
     }

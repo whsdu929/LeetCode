@@ -1,4 +1,4 @@
-package com.xudadong.leetcode.arithmetic;
+package com.xudadong.leetcode.algorithm;
 
 import com.xudadong.leetcode.contract.RegularModel;
 
@@ -124,7 +124,7 @@ public class TwoSumLinkedList extends RegularModel<TwoSumLinkedList.ListNode[], 
             sum /= 10;
             cur = cur.next;
         }
-        if(sum >= 1) {
+        if (sum >= 1) {
             cur.next = new ListNode(sum);
         }
         return listNode.next;
@@ -144,6 +144,7 @@ public class TwoSumLinkedList extends RegularModel<TwoSumLinkedList.ListNode[], 
     static class ListNode implements Serializable {
         int val;
         ListNode next;
+
         public ListNode(int x) {
             val = x;
         }

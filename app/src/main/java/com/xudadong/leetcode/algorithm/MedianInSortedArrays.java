@@ -1,4 +1,4 @@
-package com.xudadong.leetcode.arithmetic;
+package com.xudadong.leetcode.algorithm;
 
 import com.xudadong.leetcode.contract.RegularModel;
 
@@ -74,7 +74,7 @@ public class MedianInSortedArrays extends RegularModel<MedianInSortedArrays.Inpu
         if (isSingle) {
             return result2;
         } else {
-            return (result1 + result2) /2;
+            return (result1 + result2) / 2;
         }
     }
 

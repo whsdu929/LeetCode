@@ -1,4 +1,4 @@
-package com.xudadong.leetcode.arithmetic.special;
+package com.xudadong.leetcode.algorithm.special;
 
 import androidx.lifecycle.MutableLiveData;
 

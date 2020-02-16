@@ -1,4 +1,4 @@
-package com.xudadong.leetcode.arithmetic.special;
+package com.xudadong.leetcode.algorithm.special;
 
 import com.xudadong.leetcode.contract.Model;
 

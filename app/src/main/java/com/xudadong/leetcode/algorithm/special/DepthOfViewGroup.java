@@ -1,4 +1,4 @@
-package com.xudadong.leetcode.arithmetic.special;
+package com.xudadong.leetcode.algorithm.special;
 
 import android.content.Context;
 import android.view.View;

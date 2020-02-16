@@ -1,15 +1,15 @@
 package com.xudadong.leetcode.utils;
 
-import com.xudadong.leetcode.arithmetic.BigNumberPlus;
-import com.xudadong.leetcode.arithmetic.BinarySearch;
-import com.xudadong.leetcode.arithmetic.LongestSubstring;
-import com.xudadong.leetcode.arithmetic.MedianInSortedArrays;
-import com.xudadong.leetcode.arithmetic.QuickSort;
-import com.xudadong.leetcode.arithmetic.ReverseLinkedList;
-import com.xudadong.leetcode.arithmetic.TwoSumLinkedList;
-import com.xudadong.leetcode.arithmetic.special.DepthOfViewGroup;
-import com.xudadong.leetcode.arithmetic.special.MultiThreadPrinter;
-import com.xudadong.leetcode.arithmetic.special.TwoSum;
+import com.xudadong.leetcode.algorithm.BigNumberPlus;
+import com.xudadong.leetcode.algorithm.BinarySearch;
+import com.xudadong.leetcode.algorithm.LongestSubstring;
+import com.xudadong.leetcode.algorithm.MedianInSortedArrays;
+import com.xudadong.leetcode.algorithm.QuickSort;
+import com.xudadong.leetcode.algorithm.ReverseLinkedList;
+import com.xudadong.leetcode.algorithm.TwoSumLinkedList;
+import com.xudadong.leetcode.algorithm.special.DepthOfViewGroup;
+import com.xudadong.leetcode.algorithm.special.MultiThreadPrinter;
+import com.xudadong.leetcode.algorithm.special.TwoSum;
 import com.xudadong.leetcode.contract.Model;
 import com.xudadong.leetcode.pattern.ProducerConsumer;
 import com.xudadong.leetcode.pattern.SingletonInstance;
