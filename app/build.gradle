@@ -6,6 +6,18 @@ apply plugin: 'kotlin-android-extensions'
 Properties signingProperties = new Properties()
 signingProperties.load(new FileInputStream(file("../signings/signing.properties")))
 
+task copyAlorithmFiles() {
+    def srcDir = '../app/src/main/java/com/xudadong/leetcode/algorithm/'
+    def destDir = '../app/src/main/assets/algorithm/'
+
+    delete destDir
+
+    copy {
+        from srcDir
+        into destDir
+    }
+}
+
 android {
     compileSdkVersion compile_sdk_version
     defaultConfig {
@@ -21,11 +33,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-//    copy {
-//        from '../app/src/main/java/com/xudadong/leetcode/group/'
-//        into '../app/src/main/assets/'
-//    }
-
     signingConfigs {
         release {
             storeFile file(signingProperties['KEYSTORE_FILEPATH'])
@@ -37,10 +44,12 @@ android {
 
     buildTypes {
         debug {
+            copyAlorithmFiles
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
+            copyAlorithmFiles
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 

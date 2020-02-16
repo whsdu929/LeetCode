@@ -1,4 +1,5 @@
-# LeetCoder
+# LeetCode
+
 各种算法题目的Java实现
 
 ### TODO
@@ -10,7 +11,7 @@
 
 ### code文件路径
 
-https://raw.githubusercontent.com/whsdu929/LeetCode/master/app/src/main/java/com/xudadong/leetcode/arithmetic/BigNumberPlus.java
+https://raw.githubusercontent.com/whsdu929/LeetCode/master/app/src/main/java/com/xudadong/leetcode/algorithm/QuickSort.java
 
 ### readme文件路径
 

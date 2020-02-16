@@ -1,6 +1,7 @@
 package com.sunfusheng.code.viewer
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +60,7 @@ class CodeViewerFragment : Fragment() {
         temp.append(arguments?.getString(KEY_PATH))
 
         mCodeFilePath = temp.toString()
+        Log.d("sfs", "mCodeFilePath: " + mCodeFilePath)
     }
 
     override fun onCreateView(
