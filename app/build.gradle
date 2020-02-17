@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 Properties signingProperties = new Properties()
 signingProperties.load(new FileInputStream(file("../signings/signing.properties")))
 
-task copyAlorithmFiles() {
+task copyAlgorithmFiles() {
     def srcDir = '../app/src/main/java/com/xudadong/leetcode/algorithm/'
     def destDir = '../app/src/main/assets/algorithm/'
 
@@ -44,12 +44,12 @@ android {
 
     buildTypes {
         debug {
-            copyAlorithmFiles
+            copyAlgorithmFiles
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
-            copyAlorithmFiles
+            copyAlgorithmFiles
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
