@@ -1,10 +1,14 @@
 package com.xudadong.leetcode.ui
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import com.sunfusheng.code.viewer.CodeHtmlGenerator
 import com.sunfusheng.code.viewer.CodeWebView
 import com.xudadong.leetcode.R
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -25,27 +29,30 @@ class AboutActivity : BaseActivity() {
     }
 
     private fun testLoadCodeFile() {
-        val webView: CodeWebView = findViewById(R.id.vCodeWebView)
-        val start = System.currentTimeMillis()
-
         val fileName = "algorithm/QuickSort.java"
-        val stringContent = getStringFromAssetFile(fileName)
-        val htmlContent = CodeHtmlGenerator.generate(this, fileName, stringContent)
 
-        Log.w("sfs", "time consumed: " + (System.currentTimeMillis() - start))
-        webView.loadPage(htmlContent)
+        GlobalScope.launch(Dispatchers.Main) {
+            val webView = findViewById<CodeWebView>(R.id.vCodeWebView)
+            val htmlContent = loadCodeFile(this@AboutActivity, fileName)
+            webView.loadPage(htmlContent)
+        }
     }
 
-    private fun getStringFromAssetFile(fileName: String): String {
+    private suspend fun loadCodeFile(context: Context, fileName: String): String? {
+        return GlobalScope.async(Dispatchers.Default) {
+            val stringContent = getStringFromAssetsFile(fileName)
+            return@async CodeHtmlGenerator.generate(context, fileName, stringContent)
+        }.await()
+    }
+
+    private fun getStringFromAssetsFile(fileName: String): String {
         val bufferedReader = BufferedReader(InputStreamReader(assets.open(fileName), "UTF-8"))
         val content = StringBuffer()
         var line: String? = null
-
         while (bufferedReader.readLine()?.also { line = it } != null) {
             content.append(line)
             content.append("\n")
         }
         return content.toString()
     }
-
 }
