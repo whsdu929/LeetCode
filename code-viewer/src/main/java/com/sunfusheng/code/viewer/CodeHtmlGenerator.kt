@@ -13,25 +13,24 @@ object CodeHtmlGenerator {
         if (context == null || sourceCode?.length == 0) return null
 
         val extension = MimeTypeMap.getFileExtensionFromUrl(codeFilePath)
-        val whiteColor = context.applicationContext.resources.getColor(android.R.color.white)
-        val backgroundColor = "#${Integer.toHexString(whiteColor)}"
-        return generateCodeHtml(sourceCode!!, extension, backgroundColor, false, false)
+        return generateCodeHtml(sourceCode!!, extension, true, false, false)
     }
 
     private fun generateCodeHtml(
         sourceCode: String,
         extension: String?,
-        backgroundColor: String,
+        isNight: Boolean,
         wrap: Boolean,
         lineNums: Boolean
     ): String? {
+        val backgroundColor = if (isNight) "#373a41" else "#ffffff"
         return """
             <html>
                 <head>
                     <meta charset="utf-8" />
                     <title>Code Viewer</title>
                     <meta name="viewport" content="width=device-width; initial-scale=1.0;"/>
-                    <script src="./core/run_prettify.js?autoload=true&amp;skin=prettify&amp;lang=$extension&amp;" defer></script>
+                    <script src="./core/run_prettify.js?autoload=true&amp;skin=${if (isNight) "desert" else "prettify"}&amp;lang=$extension&amp;" defer></script>
                     <style>
                         body {background: $backgroundColor;}
                         .prettyprint {background: $backgroundColor;}

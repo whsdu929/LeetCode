@@ -19,7 +19,6 @@ class CodeWebView @JvmOverloads constructor(
 ) : WebView(context, attrs, defStyleAttr) {
 
     init {
-        setBackgroundColor(resources.getColor(android.R.color.white))
         val settings = settings
         settings.javaScriptEnabled = true
         settings.setAppCachePath(context.cacheDir.path)
@@ -30,6 +29,7 @@ class CodeWebView @JvmOverloads constructor(
         scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
         settings.setSupportZoom(true)
         settings.builtInZoomControls = true
+        settings.displayZoomControls = false
         setInitialScale(25)
         setOnLongClickListener { v: View? -> false }
     }
