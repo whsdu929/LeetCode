@@ -1,4 +1,4 @@
-package com.sunfusheng.code.viewer
+package com.xudadong.leetcode.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import com.sunfusheng.codeviewer.CodeHtmlGenerator
+import com.xudadong.leetcode.R
+import com.xudadong.leetcode.utils.CodeFileFetcher
 import kotlinx.android.synthetic.main.fragment_code_viewer.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -78,8 +81,12 @@ class CodeViewerFragment : Fragment() {
 
     private fun fetchCodeFile() {
         mJob = GlobalScope.launch(Dispatchers.Main) {
-            val result = CodeFileFetcher.fetch(mCodeFilePath!!)
-            val codePage = CodeHtmlGenerator.generate(mCodeFilePath, result!!)
+            val result =
+                CodeFileFetcher.fetch(mCodeFilePath!!)
+            val codePage = CodeHtmlGenerator.generate(
+                mCodeFilePath,
+                result!!
+            )
             vCodeWebView.loadCodeHtml(codePage)
         }
     }

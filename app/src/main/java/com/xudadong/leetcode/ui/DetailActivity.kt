@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.sunfusheng.code.viewer.CodeViewerFragment
 import com.xudadong.leetcode.R
 import com.xudadong.leetcode.contract.Model
 import kotlinx.android.synthetic.main.activity_new_detail.*

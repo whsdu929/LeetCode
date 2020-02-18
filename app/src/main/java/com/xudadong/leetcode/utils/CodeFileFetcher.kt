@@ -1,4 +1,4 @@
-package com.sunfusheng.code.viewer
+package com.xudadong.leetcode.utils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -30,7 +30,8 @@ object CodeFileFetcher {
     suspend fun fetch(url: String): String? {
         return GlobalScope.async(Dispatchers.Default) {
             val request = Request.Builder().url(url).get().build();
-            val newCall = getOkHttpClient()?.newCall(request)
+            val newCall = getOkHttpClient()
+                ?.newCall(request)
             val response = newCall?.execute()
             return@async response?.body?.string()
         }.await()

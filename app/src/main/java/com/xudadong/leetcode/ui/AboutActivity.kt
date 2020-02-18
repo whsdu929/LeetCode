@@ -2,15 +2,14 @@ package com.xudadong.leetcode.ui
 
 import android.content.Context
 import android.os.Bundle
-import com.sunfusheng.code.viewer.CodeHtmlGenerator
-import com.sunfusheng.code.viewer.CodeView
+import com.sunfusheng.codeviewer.CodeHtmlGenerator
+import com.sunfusheng.codeviewer.CodeView
+import com.sunfusheng.codeviewer.CodeViewUtil
 import com.xudadong.leetcode.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 
 /**
@@ -40,24 +39,13 @@ class AboutActivity : BaseActivity() {
 
     private suspend fun loadCodeFile(context: Context, fileName: String): String? {
         return GlobalScope.async(Dispatchers.Default) {
-            val stringContent = getStringFromAssetsFile(fileName)
+            val stringContent = CodeViewUtil.getStringFromAssetsFile(this@AboutActivity, fileName)
             return@async CodeHtmlGenerator.generate(
                 fileName,
                 stringContent,
-                isNightMode = false,
+                isNightMode = true,
                 showLineNums = false
             )
         }.await()
-    }
-
-    private fun getStringFromAssetsFile(fileName: String): String {
-        val bufferedReader = BufferedReader(InputStreamReader(assets.open(fileName), "UTF-8"))
-        val content = StringBuffer()
-        var line: String? = null
-        while (bufferedReader.readLine()?.also { line = it } != null) {
-            content.append(line)
-            content.append("\n")
-        }
-        return content.toString()
     }
 }

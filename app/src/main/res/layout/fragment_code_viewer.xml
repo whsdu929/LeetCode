@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.sunfusheng.code.viewer.CodeView
+    <com.sunfusheng.codeviewer.CodeView
         android:id="@+id/vCodeWebView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

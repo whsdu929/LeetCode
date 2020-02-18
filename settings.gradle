@@ -1,4 +1,3 @@
-include ':code-viewer',
-        ':app'
+include ':app'
 
 
