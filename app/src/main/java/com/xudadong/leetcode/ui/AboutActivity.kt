@@ -3,7 +3,7 @@ package com.xudadong.leetcode.ui
 import android.content.Context
 import android.os.Bundle
 import com.sunfusheng.code.viewer.CodeHtmlGenerator
-import com.sunfusheng.code.viewer.CodeWebView
+import com.sunfusheng.code.viewer.CodeView
 import com.xudadong.leetcode.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -32,16 +32,21 @@ class AboutActivity : BaseActivity() {
         val fileName = "algorithm/QuickSort.java"
 
         GlobalScope.launch(Dispatchers.Main) {
-            val webView = findViewById<CodeWebView>(R.id.vCodeWebView)
+            val webView = findViewById<CodeView>(R.id.vCodeWebView)
             val htmlContent = loadCodeFile(this@AboutActivity, fileName)
-            webView.loadPage(htmlContent)
+            webView.loadCodeHtml(htmlContent)
         }
     }
 
     private suspend fun loadCodeFile(context: Context, fileName: String): String? {
         return GlobalScope.async(Dispatchers.Default) {
             val stringContent = getStringFromAssetsFile(fileName)
-            return@async CodeHtmlGenerator.generate(context, fileName, stringContent)
+            return@async CodeHtmlGenerator.generate(
+                fileName,
+                stringContent,
+                isNightMode = false,
+                showLineNums = false
+            )
         }.await()
     }
 

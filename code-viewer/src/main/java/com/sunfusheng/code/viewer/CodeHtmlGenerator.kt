@@ -1,6 +1,6 @@
 package com.sunfusheng.code.viewer
 
-import android.content.Context
+import android.text.TextUtils
 import android.webkit.MimeTypeMap
 
 /**
@@ -8,42 +8,45 @@ import android.webkit.MimeTypeMap
  * @since 2020-01-03
  */
 object CodeHtmlGenerator {
+    const val DAY_MODE_COLOR = "#ffffff"
+    const val NIGHT_MODE_COLOR = "#373a41"
 
-    fun generate(context: Context?, codeFilePath: String?, sourceCode: String?): String? {
-        if (context == null || sourceCode?.length == 0) return null
-
-        val extension = MimeTypeMap.getFileExtensionFromUrl(codeFilePath)
-        return generateCodeHtml(sourceCode!!, extension, true, false, false)
+    fun getFileExtension(filePath: String?): String? {
+        return MimeTypeMap.getFileExtensionFromUrl(filePath)
     }
 
-    private fun generateCodeHtml(
-        sourceCode: String,
-        extension: String?,
-        isNight: Boolean,
-        wrap: Boolean,
-        lineNums: Boolean
+    fun generate(
+        filePath: String?,
+        sourceCode: String?,
+        isNightMode: Boolean = false,
+        showLineNums: Boolean = false
     ): String? {
-        val backgroundColor = if (isNight) "#373a41" else "#ffffff"
+        val extension = getFileExtension(filePath)
+        val code = if (TextUtils.isEmpty(sourceCode)) {
+            "No Data!"
+        } else {
+            sourceCode!!.replace("<", "&lt;").replace(">", "&gt;")
+        }
+        val backgroundColor = if (isNightMode) NIGHT_MODE_COLOR else DAY_MODE_COLOR
+        val skin = if (isNightMode) "desert" else "prettify"
+
         return """
             <html>
                 <head>
                     <meta charset="utf-8" />
                     <title>Code Viewer</title>
                     <meta name="viewport" content="width=device-width; initial-scale=1.0;"/>
-                    <script src="./core/run_prettify.js?autoload=true&amp;skin=${if (isNight) "desert" else "prettify"}&amp;lang=$extension&amp;" defer></script>
+                    <script src="./run_prettify.js?autoload=true&amp;skin=$skin&amp;lang=$extension&amp;" defer></script>
                     <style>
                         body {background: $backgroundColor;}
-                        .prettyprint {background: $backgroundColor;}
-                        pre.prettyprint {
-                            word-wrap: ${if (wrap) "break-word" else "normal"};
-                            white-space: ${if (wrap) "pre-wrap" else "no-wrap"};
-                        }
+                        pre.prettyprint {background: $backgroundColor;}
+                        pre.prettyprint {word-wrap: "normal";white-space: "no-wrap";}
                     </style>
                 </head>
                 <body>
-                    <?prettify lang=$extension linenums=$lineNums?>
+                    <?prettify lang=$extension linenums=$showLineNums?>
                     <pre class="prettyprint">
-${sourceCode.replace("<", "&lt;").replace(">", "&gt;")}
+$code
                     </pre>
                 </body>
             </html>

@@ -79,8 +79,8 @@ class CodeViewerFragment : Fragment() {
     private fun fetchCodeFile() {
         mJob = GlobalScope.launch(Dispatchers.Main) {
             val result = CodeFileFetcher.fetch(mCodeFilePath!!)
-            val codePage = CodeHtmlGenerator.generate(context, mCodeFilePath, result)
-            vCodeWebView.loadPage(codePage)
+            val codePage = CodeHtmlGenerator.generate(mCodeFilePath, result!!)
+            vCodeWebView.loadCodeHtml(codePage)
         }
     }
 
