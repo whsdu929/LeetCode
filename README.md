@@ -12,9 +12,3 @@
 ### code文件路径
 
 https://raw.githubusercontent.com/whsdu929/LeetCode/master/app/src/main/java/com/xudadong/leetcode/algorithm/QuickSort.java
-
-### readme文件路径
-
-https://raw.githubusercontent.com/whsdu929/LeetCode/master/README.md
-
-### [code-prettify](https://github.com/google/code-prettify)

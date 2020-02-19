@@ -87,7 +87,7 @@ class CodeViewerFragment : Fragment() {
                 mCodeFilePath,
                 result!!
             )
-            vCodeWebView.loadCodeHtml(codePage)
+            vCodeView.loadCodeHtml(codePage)
         }
     }
 
